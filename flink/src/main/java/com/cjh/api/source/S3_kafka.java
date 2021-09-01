@@ -18,7 +18,7 @@ public class S3_kafka {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         Properties props = new Properties();
-        props.setProperty("bootstrap.servers", "192.168.5.128:9092");
+        props.setProperty("bootstrap.servers", "192.168.142.128:9092");
         DataStream<String> ds = env.addSource(new FlinkKafkaConsumer<>("sensor", new SimpleStringSchema(), props));
 
         ds.print("kafka");
