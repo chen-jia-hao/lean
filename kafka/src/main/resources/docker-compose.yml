@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    restart: always
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    expose:
+      - "2181"
+    environment:
+      - ZOO_MY_ID=1
+  kafka:
+    image: wurstmeister/kafka
+    restart: always
+    container_name: kafka
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.80.128:9092
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_MESSAGE_MAX_BYTES=2000000
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+  kafka-manager:
+    image: sheepkiller/kafka-manager
+    restart: always
+    container_name: kafka-manager
+    environment:
+      - ZK_HOSTS=zookeeper:2181
+    ports:
+      - "9000:9000"
+    depends_on:
+      - kafka

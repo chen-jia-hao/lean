@@ -71,5 +71,26 @@
 
 
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <!--<archive>
+                        <manifest>
+                            &lt;!&ndash;指定入口文件的位置&ndash;&gt;
+                            <mainClass>com.xx.TestMain</mainClass>
+                        </manifest>
+                    </archive>-->
+                    <descriptorRefs>
+                        <descriptorRef>
+                            jar-with-dependencies
+                        </descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
