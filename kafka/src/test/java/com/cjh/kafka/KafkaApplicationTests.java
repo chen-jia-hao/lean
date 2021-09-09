@@ -16,10 +16,15 @@ class KafkaApplicationTests {
     private KafkaTemplate<String, Object> kafkaTemplate;
 
     @Test
+    public void test01 () {
+//        kafkaTemplate.
+    }
+
+    @Test
     void contextLoads() throws InterruptedException {
         for (int j = 0; j < 1000; j++) {
             Instant start = Instant.now();
-            for (int i = 0; i < 200000; i++) {
+            for (int i = 0; i < 2; i++) {
                 kafkaTemplate.send("t1", "hi" + i);
             }
             System.out.println(Duration.between(start, Instant.now()).toMillis() + "ms " + j);
